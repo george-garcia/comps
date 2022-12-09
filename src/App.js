@@ -1,24 +1,25 @@
-import Button from "./Button";
+import Accordion from "./components/Accordion";
+
 
 function App() {
+
+    const items = [
+        {
+            label: 'this is the first label',
+            content: 'You can do whatever you want. You can do whatever you want. You can do whatever you want. You can do whatever you want.'
+        },
+        {
+            label: 'this is the second label',
+            content: 'You can do whatever you want. You can do whatever you want. You can do whatever you want. You can do whatever you want.'
+        },
+        {
+            label: 'this is the third label',
+            content: 'You can do whatever you want. You can do whatever you want. You can do whatever you want. You can do whatever you want.'
+        }
+    ]
+
     return (
-        <div>
-            <div>
-                <Button primary >Click Me!!</Button>
-            </div>
-            <div>
-                <Button>Buy Now!!</Button>
-            </div>
-            <div>
-                <Button>See Deal!!</Button>
-            </div>
-            <div>
-                <Button>Hide Ads!!</Button>
-            </div>
-            <div>
-                <Button>Bid!</Button>
-            </div>
-        </div>
+        <Accordion items={items}/>
     );
 }
 
