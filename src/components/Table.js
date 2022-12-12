@@ -1,22 +1,32 @@
-function Table({ data }){
+import { Fragment } from "react";
 
-    const renderedRows = data.map((fruit) => {
+function Table({ data, config, keyFn }){
+
+    const renderedHeaders = config.map(col => {
+        if(col.header)
+            return <Fragment key={col.label}>{col.header()}</Fragment>;
+
+        return <th key={col.label}>{col.label}</th>
+    });
+
+    const renderedRows = data.map((rowData) => {
+
+        const renderedCells = config.map((column) => {
+            return <td className="p-2" key={column.label}>{column.render(rowData)}</td>
+        })
+
         return (
-            <tr key={fruit.name}>
-                <td>{fruit.name}</td>
-                <td>{fruit.color}</td>
-                <td>{fruit.score}</td>
+            <tr className="border-b" key={keyFn(rowData)}>
+                {renderedCells}
             </tr>
         )
     })
 
     return (
-        <table>
+        <table className="table-auto border-spacing-2">
             <thead>
-                <tr>
-                    <th>Fruits</th>
-                    <th>Color</th>
-                    <th>Score</th>
+                <tr className="border-b-2">
+                    {renderedHeaders}
                 </tr>
             </thead>
             <tbody>
